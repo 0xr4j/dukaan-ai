@@ -1,0 +1,10 @@
+fastapi>=0.110
+uvicorn>=0.29
+httpx>=0.26
+requests>=2.31
+pydantic>=2.10
+python-dotenv>=1.0.1
+segno>=1.6
+pytest>=8.0
+# PayPal Agent Toolkit is installed separately with --no-deps (see README / setup scripts):
+# its optional LangChain/CrewAI/OpenAI-Agents extras are not needed here.

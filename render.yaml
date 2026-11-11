@@ -1,0 +1,20 @@
+services:
+  - type: web
+    name: dukaan-ai
+    runtime: python
+    plan: free
+    buildCommand: pip install -r requirements.txt && pip install --no-deps paypal-agent-toolkit==1.11.0
+    startCommand: uvicorn app.main:app --host 0.0.0.0 --port $PORT
+    envVars:
+      - key: PYTHON_VERSION
+        value: 3.12.7
+      - key: PAYPAL_CLIENT_ID
+        sync: false
+      - key: PAYPAL_CLIENT_SECRET
+        sync: false
+      - key: GEMINI_API_KEY
+        sync: false
+      - key: CHANNEL3_API_KEY
+        sync: false
+      - key: CURRENCY
+        value: USD
