@@ -1,0 +1,79 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Dukaan AI</title>
+  <meta name="description" content="Voice & camera back office for small shopkeepers, powered by PayPal Agent Toolkit">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@600;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/static/style.css">
+  <script src="/static/vendor/ag-grid-community.min.js" onerror="this.remove()"></script>
+  <script>window.agGrid || document.write('<script src="https://cdn.jsdelivr.net/npm/ag-grid-community@33.3.2/dist/ag-grid-community.min.js"><\/script>')</script>
+</head>
+<body>
+<header class="top">
+  <div class="brand">
+    <div class="logo">दु</div>
+    <div>
+      <h1>Dukaan AI</h1>
+      <p id="shopName">Your shop</p>
+    </div>
+  </div>
+  <div class="chips" id="modes"></div>
+</header>
+
+<nav class="tabs">
+  <button class="tab active" data-view="talk">🗣️ <span data-hi="Bolo" data-en="Talk">Talk</span></button>
+  <button class="tab" data-view="ledger">📒 <span data-hi="Khata" data-en="Ledger">Ledger</span></button>
+  <div class="lang">
+    <button id="langHi" class="pill">हिंदी</button>
+    <button id="langEn" class="pill on">English</button>
+  </div>
+</nav>
+
+<main>
+  <section id="view-talk" class="view">
+    <div id="feed" class="feed" aria-live="polite"></div>
+
+    <div class="suggest" id="suggest"></div>
+
+    <div class="dock">
+      <button id="cam" class="round small" title="Add product with camera" aria-label="Camera">📷</button>
+      <button id="mic" class="round big" aria-label="Hold to speak"><span class="mic-icon">🎙️</span></button>
+      <button id="brief" class="round small" title="Today's briefing" aria-label="Briefing">🔔</button>
+    </div>
+    <p class="hint" id="hint" data-hi="Mic dabaiye aur boliye" data-en="Tap the mic and speak">Tap the mic and speak</p>
+    <form id="typeForm" class="type">
+      <input id="typeInput" autocomplete="off" placeholder="…or type: Sharma ji ko 3 bag ka 1500 ka bill bhejo">
+      <button type="submit">➤</button>
+    </form>
+  </section>
+
+  <section id="view-ledger" class="view hidden">
+    <div class="ledger-tabs">
+      <button class="pill on" data-grid="invoices">Invoices</button>
+      <button class="pill" data-grid="products">Catalog</button>
+      <button class="pill" data-grid="activity">Agent log</button>
+      <button class="pill" id="refresh">↻</button>
+    </div>
+    <div id="grid" class="grid"></div>
+    <p class="fine">Every action the agent takes is logged with what was heard and which PayPal Agent Toolkit tool ran.</p>
+  </section>
+</main>
+
+<dialog id="camDialog">
+  <div class="cam-wrap">
+    <video id="video" autoplay playsinline muted></video>
+    <canvas id="canvas" hidden></canvas>
+  </div>
+  <div class="cam-actions">
+    <label class="pill file">🖼️ Upload<input type="file" id="fileIn" accept="image/*" hidden></label>
+    <button id="snap" class="primary">📸 Snap</button>
+    <button id="camClose" class="pill">✕</button>
+  </div>
+</dialog>
+
+<script src="/static/app.js"></script>
+</body>
+</html>
